@@ -26,6 +26,8 @@ public class TestSpSprintbootApplication {
             } else if (Objects.equals(m.house, "harkonnen")) {
                 System.out.println("Mesaj de la casa Harkonnen, trimis la " + m.date);
                 System.out.println(harkonnen.decode(m));
+            } else {
+                System.out.println("Mesaj indescifrabil (de la casa " + m.house + "), trimis la " + m.date);
             }
         }
 
