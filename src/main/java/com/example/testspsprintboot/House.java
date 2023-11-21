@@ -4,8 +4,8 @@ abstract class House {
     abstract String decode(Message m);
 }
 
-class Harkonnen extends House {
-    //Caesar cu shift de 24 (adica -2 pt decodare)
+abstract class CaesarHouse extends House {
+    abstract int getShift();
     @Override
     String decode(Message m) {
         String message = m.message;
@@ -15,35 +15,26 @@ class Harkonnen extends House {
 
             if (currentChar == '\"') {
                 decryptedText.append(' ');
-            } else if (Character.isLetter(currentChar)) {
-                char decryptedChar = (char) (currentChar - 2);
-                decryptedText.append(decryptedChar);
             } else {
-                decryptedText.append(currentChar);
+                char decryptedChar = (char) (currentChar + getShift());
+                decryptedText.append(decryptedChar);
             }
         }
-
         return decryptedText.toString();
     }
 }
 
-class Atreides extends House {
-    // Un fel de caesar cu shift de 1
+
+class Harkonnen extends CaesarHouse {
     @Override
-    String decode(Message m) {
-        String message = m.message;
-        StringBuilder decryptedText = new StringBuilder();
-        for (int i = 0; i < message.length(); i++) {
-            char currentChar = message.charAt(i);
+    int getShift() {
+        return -2;
+    }
+}
 
-            if (currentChar == '\"') {
-                decryptedText.append(' ');
-            } else {
-                char decryptedChar = (char) (currentChar + 3);
-                decryptedText.append(decryptedChar);
-            }
-        }
-
-        return decryptedText.toString();
+class Atreides extends CaesarHouse {
+    @Override
+    int getShift() {
+        return 3;
     }
 }
