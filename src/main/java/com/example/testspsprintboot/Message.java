@@ -11,4 +11,8 @@ public class Message {
     public String message;
     @JsonProperty("house")
     public String house;
+
+    public void print() {
+
+    }
 }
